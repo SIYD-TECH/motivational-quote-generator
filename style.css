@@ -1,0 +1,235 @@
+/* General Body and Font */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5; /* Light background */
+    color: #333; /* Default text color */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px; /* Typical mobile width */
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.greeting {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222;
+}
+
+.datetime-toggle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.datetime {
+    text-align: right;
+    font-size: 0.85rem;
+}
+
+.datetime .time {
+    font-weight: 600;
+    color: #555;
+}
+
+.datetime .date {
+    color: #888;
+}
+
+.theme-toggle-btn {
+    background: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-1px);
+}
+
+.theme-toggle-btn .icon {
+    width: 22px;
+    height: 22px;
+    color: #666;
+}
+
+/* Quote Card */
+.quote-card {
+    background: #fdfdfd;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.quote-mark {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #e0e0e0;
+    margin-bottom: -30px; /* Pull it up a bit */
+    line-height: 0.8;
+}
+
+.quote-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #333;
+    margin: 0;
+}
+
+.quote-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.quote-author {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.icon-btn .icon {
+    width: 20px;
+    height: 20px;
+    color: #888;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #fdfdfd;
+    border-radius: 15px;
+    padding: 10px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #999;
+    font-size: 0.8rem;
+    font-weight: 500;
+    gap: 5px;
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: #f5f5f5;
+    color: #555;
+}
+
+.nav-item.active {
+    color: #4CAF50; /* A pleasant green for active state */
+    font-weight: 600;
+}
+
+.nav-item .nav-icon {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.nav-item.active .nav-icon {
+    color: #4CAF50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .container {
+        border-radius: 0;
+        min-height: 100vh;
+        justify-content: space-between;
+        padding: 20px 15px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .datetime-toggle {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .greeting {
+        font-size: 1.3rem;
+    }
+
+    .quote-text {
+        font-size: 1.2rem;
+    }
+
+    .navbar {
+        border-radius: 0;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-bottom: env(safe-area-inset-bottom); /* For iPhone notch */
+    }
+}

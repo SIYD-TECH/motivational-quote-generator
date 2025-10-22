@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Quote Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific styles for the welcome page to match the theme */
+        .welcome-card {
+            background-color: #ffffff;
+            /* Same as quote-card background */
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            /* Same as container shadow */
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            /* Adjust width for responsiveness */
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            box-sizing: border-box;
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2a64c4;
+            /* A prominent blue for the title, similar to your button */
+            margin-bottom: 10px;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+
+        .name-input::placeholder {
+            color: #aaa;
+        }
+
+        .name-input:focus {
+            border-color: #6a9ceb;
+            box-shadow: 0 0 0 3px rgba(106, 156, 235, 0.3);
+            outline: none;
+        }
+
+        .continue-btn {
+            background-color: #3f78e0;
+            /* Blue button, matching the design */
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+
+        .continue-btn:hover {
+            background-color: #2a64c4;
+            /* Darker blue on hover */
+            transform: translateY(-2px);
+        }
+
+        .continue-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <div class="welcome-card">
+        <h1 class="welcome-title">Welcome!</h1>
+        <p class="welcome-subtitle">What should we call you?</p>
+        <input type="text" class="name-input" placeholder="Enter your name">
+        <button class="continue-btn" onclick="saveNameAndProceed()">Continue</button>
+    </div>
+
+    <script>
+        function saveNameAndProceed() {
+            const nameInput = document.querySelector('.name-input');
+            const userName = nameInput.value.trim();
+
+            if (userName) {
+                localStorage.setItem('userName', userName); 
+                window.location.href = 'page2.html'; 
+            } else {
+                alert('Please enter your name!');
+                nameInput.focus();
+            }
+        }
+    </script>
+</body>
+</html>
