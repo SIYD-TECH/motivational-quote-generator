@@ -11,9 +11,9 @@
 
 <body class="dark-mode">
     <div class="container">
-        <div>
+        <div class="time-date">
             <p id="date"></p>
-        <p id="clock" style="text-align:center"></p>
+            <p id="clock" style="text-align:center"></p>
         </div>
         <header class="header">
             <div class="greeting">Good morning,</div>
@@ -37,7 +37,7 @@
             <p class="quote-mark">“</p>
             <p class="quote-text">The only way to do great work is you love what what you do.</p>
             <div class="quote-footer">
-                <button class="icon-btn" aria-label="Refresh quote">
+                <button class="icon-btn" onclick="getQuote()" aria-label="Refresh quote">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -84,4 +84,5 @@
     </div>
 </body>
 <script src="script.js"></script>
+
 </html>

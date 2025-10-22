@@ -17,7 +17,7 @@ setInterval(updateClock, 1000);
 // Date functionality
 const date = new Date();
 const todaysDate = date.toLocaleDateString();
-document.getElementById("date").innerHTML = todaysDate;
+document.getElementById("date").innerHTML =`Today's date is ${todaysDate}`;
 
 // Quote genrator functionality
 // fetch("https://api.quotable.io/random")
@@ -28,4 +28,16 @@ document.getElementById("date").innerHTML = todaysDate;
 // });
 
 
-ay
+async function getQuote() {
+    try{
+        const response = await fetch("https://api.quotable.io/random");
+        const data = await response.json()
+        console.log(data);
+        document.querySelector(".quote-text").innerHTML = data.content;
+        document.querySelector(".quote-author").innerHTML = data.author;
+    }catch (err){
+        console.error(err)
+    }
+}
+
+getQuote()
