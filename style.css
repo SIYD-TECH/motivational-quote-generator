@@ -1,4 +1,4 @@
-/* General Body and Font */
+/* 🌞 LIGHT MODE (Default) */
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
@@ -6,15 +6,15 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f2f5; /* Light background */
-    color: #333; /* Default text color */
+    background-color: #f0f2f5;
+    color: #333;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
     width: 100%;
-    max-width: 400px; /* Typical mobile width */
+    max-width: 400px;
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -86,7 +86,7 @@ body {
 }
 
 /* Quote Card */
-.quote-card {
+.quote-container {
     background: #fdfdfd;
     border-radius: 15px;
     padding: 25px;
@@ -97,30 +97,30 @@ body {
     gap: 20px;
 }
 
+
 .quote-mark {
     font-size: 4rem;
     font-weight: 700;
     color: #e0e0e0;
-    margin-bottom: -30px; /* Pull it up a bit */
+    margin-bottom: -30px;
     line-height: 0.8;
-    margin-top: 30px;
+    margin: 20px 0px;
 }
 
 .loader {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #f3f3f3; /* Light grey */
-  border-top: 5px solid black; /* Blue */
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 20px auto; /* centers it horizontally */
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid black;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
-
 
 .quote-text {
     font-size: 1.4rem;
@@ -198,7 +198,7 @@ body {
 }
 
 .nav-item.active {
-    color: #4CAF50; /* A pleasant green for active state */
+    color: #4CAF50;
     font-weight: 600;
 }
 
@@ -212,7 +212,86 @@ body {
     color: #4CAF50;
 }
 
-/* Responsive adjustments */
+/* Favourite section */
+
+#favourites-section {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#favourites-section h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+#favourites-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Card design */
+.quote-card {
+  background-color: white;
+  padding: 15px 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.quote-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Quote text */
+.quote {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+/* Author */
+.author {
+  font-size: 0.95rem;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+/* Remove button */
+.remove-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+  background-color: #e63638;
+}
+
+.hidden{
+    display: none;
+}
+
+
+
+/* 📱 Responsive */
 @media (max-width: 480px) {
     .container {
         border-radius: 0;
@@ -247,6 +326,85 @@ body {
         bottom: 0;
         left: 0;
         right: 0;
-        padding-bottom: env(safe-area-inset-bottom); /* For iPhone notch */
+        padding-bottom: env(safe-area-inset-bottom);
     }
+}
+
+/* 🌙 DARK MODE */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .container {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .header {
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .greeting {
+    color: #fff;
+}
+
+body.dark-mode .datetime .time {
+    color: #ccc;
+}
+
+body.dark-mode .datetime .date {
+    color: #888;
+}
+
+body.dark-mode .theme-toggle-btn {
+    background: #333;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .theme-toggle-btn .icon {
+    color: #ddd;
+}
+
+body.dark-mode .quote-card {
+    background: #1b1b1b;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.03);
+}
+
+body.dark-mode .quote-mark {
+    color: #333;
+}
+
+body.dark-mode .quote-text {
+    color: #eee;
+}
+
+body.dark-mode .quote-author {
+    color: #aaa;
+}
+
+body.dark-mode .icon-btn:hover {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .icon-btn .icon {
+    color: #bbb;
+}
+
+body.dark-mode .navbar {
+    background: #1b1b1b;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .nav-item {
+    color: #aaa;
+}
+
+body.dark-mode .nav-item:hover {
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+body.dark-mode .nav-item.active {
+    color: #4CAF50;
 }
