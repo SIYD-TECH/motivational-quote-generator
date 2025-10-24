@@ -1,9 +1,9 @@
 // alert("solo")
 const user_name = localStorage.getItem("userName");
-// console.log(user_name);
+// // console.log(user_name);
 let firstLetter = user_name.slice(0, 1).toUpperCase();
 let editedName = firstLetter + user_name.slice(1);
-let time = new Date().toLocaleTimeString();
+let time = new Date().toTimeString();
 console.log(time);
 if (time.includes("AM")) {
   console.log(true);
@@ -59,7 +59,7 @@ getQuote();
 
 // Saving to favourites
 function getCurrentQuote() {
-  const id = new Date();
+  const id = new Date().toLocaleString();
   const quoteEl = document.querySelector(".quote-text");
   const authorEl = document.querySelector(".quote-author");
   const quote = quoteEl ? quoteEl.innerText.trim() : "";
@@ -84,55 +84,72 @@ function saveToFavourites(quoteObj) {
   // console.log(favourites);
 }
 
-document.querySelector('#saveQuoteBtn').addEventListener('click' , () => {
-    const favouriteQuote = getCurrentQuote();
+document.querySelector("#saveQuoteBtn").addEventListener("click", () => {
+  const favouriteQuote = getCurrentQuote();
 
-    if(favouriteQuote.quote){
-      saveToFavourites(favouriteQuote)
-      alert('Quote has been saved')
-      // console.log(favourites)
-    }else{
-      alert('no quote was found to save')
-    }
-})
+  if (favouriteQuote.quote) {
+    saveToFavourites(favouriteQuote);
+    alert("Quote has been saved");
+    // console.log(favourites)
+  } else {
+    alert("no quote was found to save");
+  }
+});
 
 function displayFavourites() {
-  const favourites = JSON.parse(localStorage.getItem("favourites") || []);
+  const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
   console.log(favourites);
 
   const container = document.querySelector("#favourites-section");
 
-  if (favourites.lenght === 0) {
+  if (favourites.length === 0) {
     container.innerHTML = `<p>No favourites yet</p>`;
     return;
   }
+  container.innerHTML = "";
 
-  favourites.forEach((fav) => {
+  favourites.forEach((fav, index) => {
     container.innerHTML += `
     <div class="quote-card">
       <p class="quote">"${fav.quote}"</p>
       <p class="author">— ${fav.author}</p>
-      <button class="remove-btn">Remove</button>
+      <button onclick="removeQuote(${index})" class="remove-btn">Remove</button>
     </div>`;
   });
 }
 
 // displayFavourites();
 
-function removeQuote(id){ 
-  const favourites = JSON.parse(localStorage.getItem("favourites") || []);
+function removeQuote(index) {
+  const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
 
- const updatedFavourites = favourites.filter(fav => fav.id !== id);
+  const updatedFavourites = favourites.filter((_,i) => i !== index);
+
+  localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
+  console.log("quote removed sucessfully");
+
+  displayFavourites();
 }
-
-
-removeQuote();
 
 // switch display
 // function
 
-document.querySelector(`#home`).addEventListener('click', () =>{
-  document.querySelector('#first').classList.toggle( "hidden") 
-  document.querySelector(`#favourites-section`).classList.toggle("hidden");
+document.querySelector(`#home`).addEventListener("click", () => {
+  document.querySelector("#first").classList.remove("hidden");
+  document.querySelector("#home").classList.add("active");
+  document.querySelector("#fav").classList.remove("active");
+
+  document.querySelector(`#favourites-section`).classList.add("hidden");
   // console.log('clicked')
-})
+});
+
+document.querySelector("#fav").addEventListener("click", () => {
+  document.querySelector("#first").classList.add("hidden");
+  document.querySelector("#fav").classList.add("active");
+  document.querySelector("#home").classList.remove("active");
+
+  document.querySelector(`#favourites-section`).classList.remove("hidden");
+  displayFavourites();
+});
+
+console.log(JSON.parse(localStorage.getItem("favourites")));

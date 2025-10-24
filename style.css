@@ -289,6 +289,25 @@ body {
     display: none;
 }
 
+/* Default (light mode) scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* light background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc; /* scrollbar handle */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999; /* darker on hover */
+}
+
+
 
 
 /* 📱 Responsive */
@@ -366,9 +385,35 @@ body.dark-mode .theme-toggle-btn .icon {
     color: #ddd;
 }
 
-body.dark-mode .quote-card {
+body.dark-mode .quote-container {
     background: #1b1b1b;
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.03);
+}
+
+body.dark-mode .quote-card{
+    background: #1b1b1b;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.03);
+    border: solid 1px rgba(255, 255, 255, 0.351);
+}
+
+body.dark-mode #favourites-section{
+    background: #1b1b1b;
+    /* box-shadow: 0 5px 15px rgba(255, 255, 255, 0.03); */
+}
+
+body.dark-mode .quote {
+  font-size: 1.1rem;
+  color: #eee;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+/* Author */
+body.dark-mode .author {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+  margin-bottom: 10px;
 }
 
 body.dark-mode .quote-mark {
@@ -408,3 +453,18 @@ body.dark-mode .nav-item:hover {
 body.dark-mode .nav-item.active {
     color: #4CAF50;
 }
+
+
+/* 🌙 Dark mode scrollbar */
+body.dark-mode::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+body.dark-mode::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+body.dark-mode::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
