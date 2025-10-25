@@ -89,8 +89,9 @@ function saveToFavourites(quoteObj) {
   if (!quoteExists) {
     favourites.push(quoteObj);
     localStorage.setItem("favourites", JSON.stringify(favourites));
+    alert("Quote has been saved");
   } else {
-    alert("quote alraedy exists");
+    alert("quote already exists");
   }
 }
 
@@ -99,7 +100,6 @@ document.querySelector("#saveQuoteBtn").addEventListener("click", () => {
 
   if (favouriteQuote.quote) {
     saveToFavourites(favouriteQuote);
-    alert("Quote has been saved");
   } else {
     alert("no quote was found to save");
   }
