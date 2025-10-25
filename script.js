@@ -1,21 +1,28 @@
-// alert("solo")
 const user_name = localStorage.getItem("userName");
-// // console.log(user_name);
 let firstLetter = user_name.slice(0, 1).toUpperCase();
 let editedName = firstLetter + user_name.slice(1);
-let time = new Date().toTimeString();
+
+// DATE
+let time = new Date();
+let greeting;
 console.log(time);
-if (time.includes("AM")) {
-  console.log(true);
-} else if (time.includes("PM")) {
-  console.log(false);
+if (time.getHours() <= 11) {
+  greeting = `Good morning, ${editedName}`;
+} else if(time.getHours() >= 12 && time.getHours() < 17) {
+  greeting = `Good afternoon, ${editedName}`;
+}else{
+    greeting = `Good evening, ${editedName}`;
 }
-document.querySelector(".greeting").innerHTML = `Good morning, ${editedName}`;
+document.querySelector(".greeting").innerHTML = `${greeting}`;
+
+
 
 // Dark mode toggle
 document.querySelector(".theme-toggle-btn").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
+
+
 
 // CLOCK functionality
 const updateClock = () => {
@@ -26,13 +33,17 @@ const updateClock = () => {
 
 setInterval(updateClock, 1000);
 
+
+
 // Date functionality
-const date = new Date();
-const todaysDate = date.toLocaleDateString();
-document.getElementById("date").innerHTML = `Today's date is ${todaysDate}`;
+// const date = new Date();
+// const todaysDate = date.toLocaleDateString();
+// document.getElementById("date").innerHTML = `Today's date is ${todaysDate}`;
 
-document.querySelector(".loader").style.display = "none";
+// document.querySelector(".loader").style.display = "none";
 
+
+// Quote function
 async function getQuote() {
   document.querySelector(".loader").style.display = "block";
   document.querySelector(".quote-text").innerHTML = "";
@@ -44,18 +55,19 @@ async function getQuote() {
       "https://quoteslate.vercel.app/api/quotes/random"
     );
     const data = await response.json();
-    console.log(data);
 
     document.querySelector(".quote-text").innerHTML = data.quote;
     document.querySelector(".quote-author").innerHTML = data.author;
     document.querySelector(".loader").style.display = "none";
-    // document.querySelector(".quote-text").innerHTML = '';
   } catch (err) {
     console.error(err);
   }
 }
-
 getQuote();
+
+
+
+
 
 // Saving to favourites
 function getCurrentQuote() {
@@ -77,11 +89,9 @@ function saveToFavourites(quoteObj) {
   if (!quoteExists) {
     favourites.push(quoteObj);
     localStorage.setItem("favourites", JSON.stringify(favourites));
-    console.log(favourites);
   } else {
     alert("quote alraedy exists");
   }
-  // console.log(favourites);
 }
 
 document.querySelector("#saveQuoteBtn").addEventListener("click", () => {
@@ -90,7 +100,6 @@ document.querySelector("#saveQuoteBtn").addEventListener("click", () => {
   if (favouriteQuote.quote) {
     saveToFavourites(favouriteQuote);
     alert("Quote has been saved");
-    // console.log(favourites)
   } else {
     alert("no quote was found to save");
   }
@@ -98,7 +107,6 @@ document.querySelector("#saveQuoteBtn").addEventListener("click", () => {
 
 function displayFavourites() {
   const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
-  console.log(favourites);
 
   const container = document.querySelector("#favourites-section");
 
@@ -118,7 +126,6 @@ function displayFavourites() {
   });
 }
 
-// displayFavourites();
 
 function removeQuote(index) {
   const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
@@ -131,8 +138,7 @@ function removeQuote(index) {
   displayFavourites();
 }
 
-// switch display
-// function
+
 
 document.querySelector(`#home`).addEventListener("click", () => {
   document.querySelector("#first").classList.remove("hidden");
@@ -140,7 +146,6 @@ document.querySelector(`#home`).addEventListener("click", () => {
   document.querySelector("#fav").classList.remove("active");
 
   document.querySelector(`#favourites-section`).classList.add("hidden");
-  // console.log('clicked')
 });
 
 document.querySelector("#fav").addEventListener("click", () => {
@@ -152,4 +157,3 @@ document.querySelector("#fav").addEventListener("click", () => {
   displayFavourites();
 });
 
-console.log(JSON.parse(localStorage.getItem("favourites")));
