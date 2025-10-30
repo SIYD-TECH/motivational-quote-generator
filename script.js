@@ -8,21 +8,17 @@ let greeting;
 console.log(time);
 if (time.getHours() <= 11) {
   greeting = `Good morning, ${editedName}`;
-} else if(time.getHours() >= 12 && time.getHours() < 17) {
+} else if (time.getHours() >= 12 && time.getHours() < 17) {
   greeting = `Good afternoon, ${editedName}`;
-}else{
-    greeting = `Good evening, ${editedName}`;
+} else {
+  greeting = `Good evening, ${editedName}`;
 }
 document.querySelector(".greeting").innerHTML = `${greeting}`;
-
-
 
 // Dark mode toggle
 document.querySelector(".theme-toggle-btn").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
-
-
 
 // CLOCK functionality
 const updateClock = () => {
@@ -35,15 +31,6 @@ setInterval(updateClock, 1000);
 
 
 
-// Date functionality
-// const date = new Date();
-// const todaysDate = date.toLocaleDateString();
-// document.getElementById("date").innerHTML = `Today's date is ${todaysDate}`;
-
-// document.querySelector(".loader").style.display = "none";
-
-
-// Quote function
 async function getQuote() {
   document.querySelector(".loader").style.display = "block";
   document.querySelector(".quote-text").innerHTML = "";
@@ -65,10 +52,6 @@ async function getQuote() {
 }
 getQuote();
 
-
-
-
-
 // Saving to favourites
 function getCurrentQuote() {
   const id = new Date().toLocaleString();
@@ -79,8 +62,9 @@ function getCurrentQuote() {
   return { id, quote, author };
 }
 
+let favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
+
 function saveToFavourites(quoteObj) {
-  let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
 
   const quoteExists = favourites.some(
     (fav) => fav.quote === quoteObj.quote && fav.author === quoteObj.author
@@ -90,6 +74,8 @@ function saveToFavourites(quoteObj) {
     favourites.push(quoteObj);
     localStorage.setItem("favourites", JSON.stringify(favourites));
     alert("Quote has been saved");
+  console.log(favourites);
+
   } else {
     alert("quote already exists");
   }
@@ -105,18 +91,22 @@ document.querySelector("#saveQuoteBtn").addEventListener("click", () => {
   }
 });
 
-function displayFavourites() {
-  const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
+  // const favourites = JSON.parse(localStorage.setItem("favourites") || "[]");
+
+
+function displayFavourites(array) {
 
   const container = document.querySelector("#favourites-section");
 
-  if (favourites.length === 0) {
+  if (array.length === 0) {
     container.innerHTML = `<p>No favourites yet</p>`;
+    // document.querySelector('#favourites').innerHTML =""
+    // document.querySelector('#heading').classList.add("hidden")
     return;
   }
   container.innerHTML = "";
 
-  favourites.forEach((fav, index) => {
+  array.forEach((fav, index) => {
     container.innerHTML += `
     <div class="quote-card">
       <p class="quote">"${fav.quote}"</p>
@@ -126,16 +116,36 @@ function displayFavourites() {
   });
 }
 
+// displayFavourites(favourites)
+
+// search functionality 
+document.getElementById('search').addEventListener('input' , () => {
+  const searchInput = search.value.trim().toLowerCase()
+  // const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
+
+  const filteredClubs = favourites.filter(favourite => {
+    const nameMatches = favourite.author.toLowerCase().includes(searchInput)
+
+    return nameMatches;
+  })
+
+  displayFavourites(filteredClubs);
+})
 
 function removeQuote(index) {
-  const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
+  const confirm = window.confirm("Are you sure you want to delete this quote");
 
-  const updatedFavourites = favourites.filter((_,i) => i !== index);
+  if (confirm) {
+    const updatedFavourites = favourites.filter((_, i) => i !== index);
 
-  localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
-  console.log("quote removed sucessfully");
+    localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
+    alert("quote removed sucessfully");
 
-  displayFavourites();
+    favourites = updatedFavourites;
+
+    displayFavourites(updatedFavourites);
+    console.log(updatedFavourites)
+  } 
 }
 
 
@@ -145,7 +155,7 @@ document.querySelector(`#home`).addEventListener("click", () => {
   document.querySelector("#home").classList.add("active");
   document.querySelector("#fav").classList.remove("active");
 
-  document.querySelector(`#favourites-section`).classList.add("hidden");
+  document.querySelector(`#favourites`).classList.add("hidden");
 });
 
 document.querySelector("#fav").addEventListener("click", () => {
@@ -153,7 +163,6 @@ document.querySelector("#fav").addEventListener("click", () => {
   document.querySelector("#fav").classList.add("active");
   document.querySelector("#home").classList.remove("active");
 
-  document.querySelector(`#favourites-section`).classList.remove("hidden");
-  displayFavourites();
+  document.querySelector(`#favourites`).classList.remove("hidden");
+  displayFavourites(favourites);
 });
-

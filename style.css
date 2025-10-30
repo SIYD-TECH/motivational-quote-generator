@@ -59,6 +59,7 @@ body {
   letter-spacing: 2px;
   color: #007bff; /* soft blue for clarity */
   text-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+  margin: 0px;
 }
 
 /* Header Section */
@@ -127,7 +128,7 @@ body {
 .quote-container {
   background: #fdfdfd;
   border-radius: 15px;
-  padding: 25px;
+  padding: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   text-align: center;
   display: flex;
@@ -259,7 +260,7 @@ body {
 
 #favourites-section {
   max-width: 600px;
-  margin: 40px auto;
+  margin: 10px auto;
   padding: 20px;
   background-color: #f5f5f5;
   border-radius: 12px;
@@ -534,4 +535,56 @@ body.dark-mode .white{
 
 body.dark-mode .black{
     display: block;
+}
+
+/* =========================
+   General Search Bar Style
+========================= */
+#favourites input[type="text"] {
+  /* width: 100%; */
+  padding: 12px 16px;
+  /* margin: 12px 0 20px; */
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  background-color: var(--search-bg);
+  color: var(--search-text);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.129);
+}
+
+/* Placeholder text color */
+#favourites input::placeholder {
+  color: var(--search-placeholder);
+  transition: color 0.3s ease;
+}
+
+/* Focus effect */
+#favourites input:focus {
+  border: 1px solid var(--search-border);
+  box-shadow: 0 0 0 3px var(--search-focus-ring);
+}
+
+/* =========================
+   Light Mode Variables
+========================= */
+body:not(.dark-mode) {
+  --search-bg: #f9fafb;
+  --search-text: #111827;
+  --search-placeholder: #6b7280;
+  --search-border: #3b82f6;
+  --search-focus-ring: rgba(59, 130, 246, 0.3);
+}
+
+/* =========================
+   Dark Mode Variables
+========================= */
+body.dark-mode {
+  --search-bg: #121212;
+  --search-text: #f9fafb;
+  --search-placeholder: #9ca3af;
+  --search-border: #60a5fa;
+  --search-focus-ring: rgba(96, 165, 250, 0.25);
 }
