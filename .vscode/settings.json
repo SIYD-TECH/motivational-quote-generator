@@ -1,4 +1,5 @@
 {
   "editor.autoClosingComments": "always",
-  "editor.autoClosingBrackets": "always"
+  "editor.autoClosingBrackets": "always",
+  "liveServer.settings.port": 5503
 }
